@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ogã Virtual - Almas de Pombagira</title>
+    <style>
+        /* --- ESTILO GERAL (Identidade: Almas) --- */
+        body {
+            background-color: #050505; /* Preto Absoluto */
+            color: #e0c097; /* Dourado Envelhecido */
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 20px;
+            padding-bottom: 80px; /* Espaço extra no final */
+        }
+
+        h1 {
+            text-align: center;
+            font-weight: lighter;
+            letter-spacing: 4px;
+            border-bottom: 1px solid #b22222; /* Vermelho Sangue */
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            font-size: 1.4em;
+            text-shadow: 0 0 10px rgba(178, 34, 34, 0.5);
+        }
+
+        .subtitulo {
+            text-align: center;
+            font-size: 0.9em;
+            color: #666;
+            margin-top: -20px;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        /* --- A LISTA DE MÚSICAS --- */
+        .playlist-container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .musica-item {
+            background-color: #111;
+            border: 1px solid #222;
+            margin-bottom: 12px;
+            border-radius: 6px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        /* Botão do Título */
+        .musica-titulo {
+            padding: 18px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            background: linear-gradient(90deg, #151515, #000);
+            border-left: 3px solid #333;
+        }
+
+        .musica-titulo:hover {
+            background: #222;
+            border-left: 3px solid #b22222;
+        }
+
+        .icone-play {
+            font-size: 1.2em;
+            color: #b22222;
+            transition: transform 0.3s ease;
+        }
+
+        /* Conteúdo (Vídeo + Letra) */
+        .musica-conteudo {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+            background-color: #000;
+        }
+
+        /* --- O PLAYER MÁGICO (Vertical 9:16) --- */
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 177.77%; /* Isso força o vídeo a ficar COMPRIDO (Tela Cheia) */
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .letra {
+            padding: 25px;
+            font-size: 0.95em;
+            color: #aaa;
+            line-height: 1.6;
+            border-top: 1px solid #222;
+            white-space: pre-line;
+            font-style: italic;
+            text-align: center;
+        }
+
+        /* Efeitos de Ativação */
+        .ativo .musica-conteudo {
+            max-height: 2000px; /* Abre a janela */
+        }
+        
+        .ativo .icone-play {
+            transform: rotate(90deg); /* Gira a seta */
+            color: #fff;
+        }
+        
+        .ativo .musica-titulo {
+            border-left: 3px solid #b22222;
+            background: #1a0000; /* Fundo levemente vermelho quando aberto */
+            color: #fff;
+        }
+        
+        /* Rodapé */
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #333;
+            font-size: 0.8em;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Ogã Virtual</h1>
+    <div class="subtitulo">Almas de Pombagira</div>
+
+    <div class="playlist-container">
+
+        <div class="musica-item">
+            <div class="musica-titulo" onclick="toggleMusica(this)">
+                <span>Laroyê Pombagira (Agradecimento)</span>
+                <span class="icone-play">➤</span>
+            </div>
+            <div class="musica-conteudo">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/bOfetOf9DaI?rel=0&modestbranding=1" allowfullscreen></iframe>
+                </div>
+                <div class="letra">
+                    Laroyê Pombagira eu vim agradecer...<br>
+                    Por cada encruzilhada que a senhora me fez vencer.
+                </div>
+            </div>
+        </div>
+
+        <div class="musica-item">
+            <div class="musica-titulo" onclick="toggleMusica(this)">
+                <span>Ponto 02 (Novo)</span>
+                <span class="icone-play">➤</span>
+            </div>
+            <div class="musica-conteudo">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/RC_US2prJYs?rel=0&modestbranding=1" allowfullscreen></iframe>
+                </div>
+                <div class="letra">Clique no título acima para ouvir...</div>
+            </div>
+        </div>
+
+        <div class="musica-item">
+            <div class="musica-titulo" onclick="toggleMusica(this)">
+                <span>Ponto 03 (Novo)</span>
+                <span class="icone-play">➤</span>
+            </div>
+            <div class="musica-conteudo">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/10DwcvLoxrI?rel=0&modestbranding=1" allowfullscreen></iframe>
+                </div>
+                <div class="letra">Axé!</div>
+            </div>
+        </div>
+
+        <div class="musica-item">
+            <div class="musica-titulo" onclick="toggleMusica(this)">
+                <span>Ponto 04 (Novo)</span>
+                <span class="icone-play">➤</span>
+            </div>
+            <div class="musica-conteudo">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/8cInvGRgB9w?rel=0&modestbranding=1" allowfullscreen></iframe>
+                </div>
+                <div class="letra">Axé!</div>
+            </div>
+        </div>
+
+        <div class="musica-item">
+            <div class="musica-titulo" onclick="toggleMusica(this)">
+                <span>Ponto 05 (Novo)</span>
+                <span class="icone-play">➤</span>
+            </div>
+            <div class="musica-conteudo">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/jTjHs5og2rc?rel=0&modestbranding=1" allowfullscreen></iframe>
+                </div>
+                <div class="letra">Axé!</div>
+            </div>
+        </div>
+
+        <div class="musica-item">
+            <div class="musica-titulo" onclick="toggleMusica(this)">
+                <span>Ponto 06 (Novo)</span>
+                <span class="icone-play">➤</span>
+            </div>
+            <div class="musica-conteudo">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/xlHDyGK9ouU?rel=0&modestbranding=1" allowfullscreen></iframe>
+                </div>
+                <div class="letra">Axé!</div>
+            </div>
+        </div>
+
+        <div class="musica-item">
+            <div class="musica-titulo" onclick="toggleMusica(this)">
+                <span>Ponto 07 (Novo)</span>
+                <span class="icone-play">➤</span>
+            </div>
+            <div class="musica-conteudo">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/XSex5w1W2CY?rel=0&modestbranding=1" allowfullscreen></iframe>
+                </div>
+                <div class="letra">Axé!</div>
+            </div>
+        </div>
+
+        <div class="musica-item">
+            <div class="musica-titulo" onclick="toggleMusica(this)">
+                <span>Ponto 08 (Novo)</span>
+                <span class="icone-play">➤</span>
+            </div>
+            <div class="musica-conteudo">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/1mPMESy3-LY?rel=0&modestbranding=1" allowfullscreen></iframe>
+                </div>
+                <div class="letra">Axé!</div>
+            </div>
+        </div>
+
+        <div class="musica-item">
+            <div class="musica-titulo" onclick="toggleMusica(this)">
+                <span>Ponto 09 (Novo)</span>
+                <span class="icone-play">➤</span>
+            </div>
+            <div class="musica-conteudo">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/Qayjpt6EcVQ?rel=0&modestbranding=1" allowfullscreen></iframe>
+                </div>
+                <div class="letra">Axé!</div>
+            </div>
+        </div>
+
+        <div class="musica-item">
+            <div class="musica-titulo" onclick="toggleMusica(this)">
+                <span>Ponto 10 (Novo)</span>
+                <span class="icone-play">➤</span>
+            </div>
+            <div class="musica-conteudo">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/R1u7tp9XUrg?rel=0&modestbranding=1" allowfullscreen></iframe>
+                </div>
+                <div class="letra">Axé!</div>
+            </div>
+        </div>
+
+        <div class="musica-item">
+            <div class="musica-titulo" onclick="toggleMusica(this)">
+                <span>Ponto 11 (Novo)</span>
+                <span class="icone-play">➤</span>
+            </div>
+            <div class="musica-conteudo">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/oDMZ24BflCU?rel=0&modestbranding=1" allowfullscreen></iframe>
+                </div>
+                <div class="letra">Axé!</div>
+            </div>
+        </div>
+
+        <div class="musica-item">
+            <div class="musica-titulo" onclick="toggleMusica(this)">
+                <span>Ponto 12 (Novo)</span>
+                <span class="icone-play">➤</span>
+            </div>
+            <div class="musica-conteudo">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/uC3Hxm3VCmc?rel=0&modestbranding=1" allowfullscreen></iframe>
+                </div>
+                <div class="letra">Axé!</div>
+            </div>
+        </div>
+
+        <div class="musica-item">
+            <div class="musica-titulo" onclick="toggleMusica(this)">
+                <span>Ponto 13 (Novo)</span>
+                <span class="icone-play">➤</span>
+            </div>
+            <div class="musica-conteudo">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/2t0-S0AW-9M?rel=0&modestbranding=1" allowfullscreen></iframe>
+                </div>
+                <div class="letra">Axé!</div>
+            </div>
+        </div>
+
+        <div class="musica-item">
+            <div class="musica-titulo" onclick="toggleMusica(this)">
+                <span>Ponto 14 (Novo)</span>
+                <span class="icone-play">➤</span>
+            </div>
+            <div class="musica-conteudo">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/dARZQgEwk1o?rel=0&modestbranding=1" allowfullscreen></iframe>
+                </div>
+                <div class="letra">Axé!</div>
+            </div>
+        </div>
+
+        <div class="musica-item">
+            <div class="musica-titulo" onclick="toggleMusica(this)">
+                <span>Ponto 15 (Novo)</span>
+                <span class="icone-play">➤</span>
+            </div>
+            <div class="musica-conteudo">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/fKBwjdaBzJc?rel=0&modestbranding=1" allowfullscreen></iframe>
+                </div>
+                <div class="letra">Axé!</div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        Desenvolvido com Axé & IA <br> &copy; 2025
+    </footer>
+
+    <script>
+        function toggleMusica(elemento) {
+            var todos = document.querySelectorAll('.musica-item');
+            todos.forEach(item => {
+                if(item !== elemento.parentElement) {
+                    item.classList.remove('ativo');
+                }
+            });
+            elemento.parentElement.classList.toggle('ativo');
+        }
+    </script>
+
+</body>
+</html>
